@@ -6,10 +6,7 @@ import com.phamtan.cuu_tro.util.GeoJsonConvert;
 import com.phamtan.cuu_tro.web.dto.request.AccountReqDto;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -29,5 +26,10 @@ public class AccountController {
 //        return accountService.create(account);
         return accountDes;
     }
+    @GetMapping
+    public String test(){
+        return "test";
+    }
+
 
 }
