@@ -30,5 +30,6 @@ public class Account implements Serializable {
     private String accountIdf;
     private String password;
     private AccountType accountType;
+    private String phoneNumber;
 
 }

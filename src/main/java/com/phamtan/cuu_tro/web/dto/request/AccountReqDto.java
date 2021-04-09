@@ -41,4 +41,8 @@ public class AccountReqDto {
     private String accountIdf;
     private String password;
     private AccountType accountType;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    private String phoneNumber;
 }

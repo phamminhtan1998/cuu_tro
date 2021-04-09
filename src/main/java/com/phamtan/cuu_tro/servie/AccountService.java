@@ -28,8 +28,6 @@ public class AccountService {
     }
 
     public List<Account> getAccountNear(GeoJsonPoint point,double distanceByKM){
-        Point destinationPoint= new Point();
-        destinationPoint.setLocation(point.getX(),point.getY());
         Distance distanceTmp  = new Distance(distanceByKM, Metrics.KILOMETERS);
         List<Account> accountList = accountRepo.findAllByCoordinatesNear(point,distanceTmp);
         return  accountList;

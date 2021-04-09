@@ -3,6 +3,7 @@ package com.phamtan.cuu_tro.dao.repo;
 import com.phamtan.cuu_tro.dao.entity.Account;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,6 @@ import java.util.List;
 public interface AccountRepo extends MongoRepository<Account,String> {
     public Account findByAccountIdf(String accountIdf);
     public List<Account> findByFullName(String fullName);
-    public List<Account> findAllByCoordinatesNear(Point destination, Distance distance);
+    public List<Account> findAllByCoordinatesNear(GeoJsonPoint destination, Distance distance);
     public List<Account> findAllByDob(LocalDate dob);
 }
