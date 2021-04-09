@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface AccountRepo extends MongoRepository<Account,String> {
     public Account findByAccountIdf(String accountIdf);
-    public Account findByFullName(String fullName);
+    public List<Account> findByFullName(String fullName);
     public List<Account> findAllByCoordinatesNear(Point destination, Distance distance);
     public List<Account> findAllByDob(LocalDate dob);
 }

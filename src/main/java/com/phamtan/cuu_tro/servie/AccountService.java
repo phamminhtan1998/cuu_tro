@@ -5,7 +5,6 @@ import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.dao.repo.AccountRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.Metric;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.stereotype.Service;
@@ -18,10 +17,13 @@ import java.util.List;
 @Service
 public class AccountService {
     private final AccountRepo accountRepo;
+    public List<Account> getAllAccounts(){
+        return accountRepo.findAll();
+    }
     public  Account getAccountByAccountIdf(String  accountIdf){
         return accountRepo.findByAccountIdf(accountIdf);
     }
-    public Account getAccountFullName(String  fullName){
+    public List<Account> getAccountFullName(String  fullName){
         return accountRepo.findByFullName(fullName);
     }
 
