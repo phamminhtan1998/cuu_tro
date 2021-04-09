@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class NewsDto implements Serializable {
-
+    private String id;
     @NotBlank
     @NotNull
     private String title;

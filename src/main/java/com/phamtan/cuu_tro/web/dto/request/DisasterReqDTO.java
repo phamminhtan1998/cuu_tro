@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 public class DisasterReqDTO {
+    private String id;
     @NotNull
     @NotBlank
     private String area;

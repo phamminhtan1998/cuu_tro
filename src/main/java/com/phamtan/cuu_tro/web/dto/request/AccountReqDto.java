@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class AccountReqDto {
+    private String id;
     @NotNull
     @NotBlank
     private String fullName;
