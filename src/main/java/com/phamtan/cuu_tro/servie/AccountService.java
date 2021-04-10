@@ -18,8 +18,10 @@ import java.util.List;
 public class AccountService {
     private final AccountRepo accountRepo;
     public List<Account> getAllAccounts(){
+
         return accountRepo.findAll();
     }
+
     public  Account getAccountByAccountIdf(String  accountIdf){
         return accountRepo.findByAccountIdf(accountIdf);
     }
@@ -28,7 +30,7 @@ public class AccountService {
     }
 
     public List<Account> getAccountNear(GeoJsonPoint point,double distanceByKM){
-        Distance distanceTmp  = new Distance(distanceByKM, Metrics.KILOMETERS);
+        Distance distanceTmp  = new Distance(distanceByKM, Metrics.MILES);
         List<Account> accountList = accountRepo.findAllByCoordinatesNear(point,distanceTmp);
         return  accountList;
     }

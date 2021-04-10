@@ -15,10 +15,10 @@ public class GeoJsonDTO {
     @NotNull
     @NotEmpty
     @NotBlank
-    private Long lat;
+    private double lat;
     @NotNull
     @NotEmpty
     @NotBlank
-    private Long lon;
+    private double lon;
     private Double distance=1.0;
 }

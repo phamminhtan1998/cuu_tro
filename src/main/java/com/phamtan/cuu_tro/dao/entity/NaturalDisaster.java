@@ -16,7 +16,6 @@ public class NaturalDisaster {
     @Id
     private String id;
     private String area;
-    private Double lat;
     private GeoJsonPoint coordinate;
     private DisasterType disasterType;
 

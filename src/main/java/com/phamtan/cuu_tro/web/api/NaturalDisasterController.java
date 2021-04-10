@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,8 +31,8 @@ public class NaturalDisasterController {
         return  disasterService.getById(id);
     }
     @PostMapping("/near")
-    public List<NaturalDisaster> findNear(@RequestBody GeoJsonDTO point){
-        GeoJsonPoint desPoint =  GeoJsonConvert.convertLatLonToGeoPoint(point.getLat(),point.getLon());
+    public List<NaturalDisaster> findNear(@Valid  @RequestBody GeoJsonDTO point){
+        GeoJsonPoint desPoint =  GeoJsonConvert.convertLatLonToGeoPoint(point.getLon(),point.getLat());
         return  disasterService.getAllNear(desPoint,point.getDistance());
     }
     @GetMapping("/disasterType")
@@ -40,7 +41,8 @@ public class NaturalDisasterController {
     }
     @PostMapping("/disasterTypeNear")
     public List<NaturalDisaster> findByDisasterTypeNear(@RequestParam("type") DisasterType disasterType,@RequestBody GeoJsonDTO point){
-        GeoJsonPoint desPoint =  GeoJsonConvert.convertLatLonToGeoPoint(point.getLat(),point.getLon());
+        GeoJsonPoint desPoint =  GeoJsonConvert.convertLatLonToGeoPoint(point.getLon(),point.getLat());
+
         return  disasterService.getAllByDisasterTypeAndDistance(desPoint,point.getDistance(),disasterType);
     }
 
@@ -48,6 +50,7 @@ public class NaturalDisasterController {
     public NaturalDisaster create(@RequestBody DisasterReqDTO disasterReqDTO){
         NaturalDisaster disaster = new NaturalDisaster();
         modelMapper.map(disasterReqDTO,disaster);
+        disaster.setCoordinate(GeoJsonConvert.convertLatLonToGeoPoint(disasterReqDTO.getLon(), disasterReqDTO.getLat()));
         disasterService.create(disaster);
         return disaster;
     }

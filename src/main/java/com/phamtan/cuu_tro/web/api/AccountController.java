@@ -71,8 +71,8 @@ public class AccountController {
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
-                account.getLat(),
-                account.getLon()
+                account.getLon(),
+                account.getLat()
         ));
         return accountService.create(accountDes);
     }
@@ -81,8 +81,8 @@ public class AccountController {
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
-                account.getLat(),
-                account.getLon()
+                account.getLon(),
+                account.getLat()
         ));
         return accountService.update(accountDes);
     }
@@ -91,8 +91,8 @@ public class AccountController {
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
-                account.getLat(),
-                account.getLon()
+                account.getLon(),
+                account.getLat()
         ));
        try {
            accountService.update(accountDes);

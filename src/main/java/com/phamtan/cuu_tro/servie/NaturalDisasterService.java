@@ -2,6 +2,7 @@ package com.phamtan.cuu_tro.servie;
 
 import com.phamtan.cuu_tro.common.enumeration.DisasterType;
 import com.phamtan.cuu_tro.common.enumeration.StatusBasic;
+import com.phamtan.cuu_tro.dao.custom.DisasterMongoQuery;
 import com.phamtan.cuu_tro.dao.entity.NaturalDisaster;
 import com.phamtan.cuu_tro.dao.repo.DisasterRepo;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class NaturalDisasterService {
     private final DisasterRepo disasterRepo;
+    private final DisasterMongoQuery disasterMongoQuery;
 
     public List<NaturalDisaster> getAll(){
         return disasterRepo.findAll();
@@ -24,15 +26,16 @@ public class NaturalDisasterService {
         return disasterRepo.findById(id).get();
     }
     public List<NaturalDisaster> getAllNear(GeoJsonPoint point, double distanceByKM){
-        Distance distance = new Distance(distanceByKM, Metrics.KILOMETERS);
-        return disasterRepo.findAllByCoordinateNear(point,distance);
+        Distance distance = new Distance(distanceByKM, Metrics.MILES);
+       return disasterMongoQuery.getWithPoint(point,distanceByKM);
     }
     public List<NaturalDisaster> getAllByDisasterType(DisasterType type){
         return disasterRepo.findAllByDisasterType(type);
     }
     public List<NaturalDisaster> getAllByDisasterTypeAndDistance(GeoJsonPoint point,double distance,DisasterType type){
         Distance distance1 = new Distance(distance, Metrics.KILOMETERS);
-        return disasterRepo.findAllByDisasterTypeAndCoordinateNear(type,point,distance1);
+        return disasterMongoQuery.getWithTypeAndPoint(point,distance,type);
+//        return disasterRepo.findAllByDisasterTypeAndCoordinateNear(type,point,distance1);
     }
 
     public NaturalDisaster create(NaturalDisaster naturalDisaster){
