@@ -21,4 +21,6 @@ public class GeoJsonDTO {
     @NotBlank
     private double lon;
     private Double distance=1.0;
+
+
 }

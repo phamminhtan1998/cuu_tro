@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "account")
-public class Account implements Serializable {
+public class Account extends  BaseEntity implements Serializable {
     @Id
     private String id;
     private String fullName;

@@ -42,7 +42,6 @@ public class NaturalDisasterController {
     @PostMapping("/disasterTypeNear")
     public List<NaturalDisaster> findByDisasterTypeNear(@RequestParam("type") DisasterType disasterType,@RequestBody GeoJsonDTO point){
         GeoJsonPoint desPoint =  GeoJsonConvert.convertLatLonToGeoPoint(point.getLon(),point.getLat());
-
         return  disasterService.getAllByDisasterTypeAndDistance(desPoint,point.getDistance(),disasterType);
     }
 

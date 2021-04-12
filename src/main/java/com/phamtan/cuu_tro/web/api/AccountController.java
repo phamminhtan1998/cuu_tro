@@ -34,7 +34,7 @@ public class AccountController {
         return responses;
     }
     @PostMapping("/near")
-    public List<AccountResponse> getAllNear(@Valid @RequestBody GeoJsonDTO geoJsonDTO){
+    public List<AccountResponse> getAllNear( @RequestBody GeoJsonDTO geoJsonDTO){
         GeoJsonPoint point = GeoJsonConvert.convertLatLonToGeoPoint(geoJsonDTO.getLat(), geoJsonDTO.getLon());
         List<Account> data =accountService.getAccountNear(point, geoJsonDTO.getDistance());
         List<AccountResponse> responses = new ArrayList<>();
@@ -67,7 +67,7 @@ public class AccountController {
 
 
     @PostMapping
-    public Account create(@Valid  @RequestBody AccountReqDto account){
+    public Account create(  @RequestBody AccountReqDto account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
@@ -77,7 +77,7 @@ public class AccountController {
         return accountService.create(accountDes);
     }
     @PatchMapping
-    public Account update(@Valid @RequestBody AccountReqDto account){
+    public Account update( @RequestBody AccountReqDto account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
@@ -87,7 +87,7 @@ public class AccountController {
         return accountService.update(accountDes);
     }
     @DeleteMapping
-    public String delete(@Valid @RequestBody AccountReqDto account){
+    public String delete( @RequestBody AccountReqDto account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(

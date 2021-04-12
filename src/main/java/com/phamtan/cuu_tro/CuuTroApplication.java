@@ -2,8 +2,13 @@ package com.phamtan.cuu_tro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
+@ComponentScan(basePackages ={"com.phamtan.cuu_tro","com.example.grpc_base"} )
+@EnableMongoAuditing
 public class CuuTroApplication {
 
     public static void main(String[] args) {

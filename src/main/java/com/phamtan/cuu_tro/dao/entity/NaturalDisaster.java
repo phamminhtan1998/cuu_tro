@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Data
 @Document
-public class NaturalDisaster {
+public class NaturalDisaster extends BaseEntity {
     @Id
     private String id;
     private String area;

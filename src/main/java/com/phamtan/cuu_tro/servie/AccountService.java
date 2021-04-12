@@ -1,6 +1,7 @@
 package com.phamtan.cuu_tro.servie;
 
 import com.phamtan.cuu_tro.common.enumeration.StatusBasic;
+import com.phamtan.cuu_tro.dao.custom.CustomMongoQuery;
 import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.dao.repo.AccountRepo;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 @Service
 public class AccountService {
     private final AccountRepo accountRepo;
+    private final CustomMongoQuery customMongoQuery;
     public List<Account> getAllAccounts(){
 
         return accountRepo.findAll();
@@ -30,8 +32,8 @@ public class AccountService {
     }
 
     public List<Account> getAccountNear(GeoJsonPoint point,double distanceByKM){
-        Distance distanceTmp  = new Distance(distanceByKM, Metrics.MILES);
-        List<Account> accountList = accountRepo.findAllByCoordinatesNear(point,distanceTmp);
+
+        List<Account> accountList = customMongoQuery.getAccountNearCoordinates(point,distanceByKM*1000);
         return  accountList;
     }
     public List<Account> getAccountByDob(LocalDate date,Long minusDay){
