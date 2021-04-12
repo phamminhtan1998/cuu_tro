@@ -3,6 +3,7 @@ package com.phamtan.cuu_tro.dao.custom;
 import com.phamtan.cuu_tro.common.enumeration.DisasterType;
 import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.dao.entity.NaturalDisaster;
+import com.phamtan.cuu_tro.dao.entity.RequestRescue;
 import lombok.AllArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.geo.GeoJson;
@@ -39,8 +40,13 @@ public class CustomMongoQuery {
     public List<Account> getAccountNearCoordinates(GeoJsonPoint point,double maxDistance){
         Query query = new Query();
         query.addCriteria(Criteria.where("coordinates").near(point).maxDistance(maxDistance));
-        List<Account> accounts = mongoTemplate.find(query,Account.class);
-        return accounts;
+        return mongoTemplate.find(query,Account.class);
+    }
+
+    public List<RequestRescue> getRequestNear(GeoJsonPoint point,double maxDistance){
+        Query query= new Query();
+        query.addCriteria(Criteria.where("location").near(point).maxDistance(maxDistance));
+        return mongoTemplate.find(query,RequestRescue.class);
     }
 
 }

@@ -22,7 +22,6 @@ public class AccountReqDto {
     @NotNull
     @NotBlank
     private String fullName;
-    @Nullable
     @DateTimeFormat()
     private LocalDate dob;
     @NotNull
@@ -46,4 +45,5 @@ public class AccountReqDto {
     @NotEmpty
     @NotBlank
     private String phoneNumber;
+    private String playerId;
 }

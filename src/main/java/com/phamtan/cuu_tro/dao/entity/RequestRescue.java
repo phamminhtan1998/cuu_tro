@@ -6,10 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document()
 public class RequestRescue extends BaseEntity{
     @Id
     private String id;

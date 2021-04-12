@@ -31,5 +31,6 @@ public class Account extends  BaseEntity implements Serializable {
     private String password;
     private AccountType accountType;
     private String phoneNumber;
+    private String playerId;
 
 }

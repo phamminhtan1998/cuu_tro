@@ -2,6 +2,7 @@ package com.phamtan.cuu_tro.servie;
 
 import com.phamtan.cuu_tro.common.enumeration.DangerLevel;
 import com.phamtan.cuu_tro.common.enumeration.StatusBasic;
+import com.phamtan.cuu_tro.dao.custom.CustomMongoQuery;
 import com.phamtan.cuu_tro.dao.entity.RequestRescue;
 import com.phamtan.cuu_tro.dao.repo.RequestRescueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.List;
 public class RequestRescueService {
     @Autowired
     private RequestRescueRepo requestRescueRepo;
+    @Autowired
+    private CustomMongoQuery customMongoQuery;
 
     public List<RequestRescue> getAll(){
         return requestRescueRepo.findAll();
@@ -24,8 +27,7 @@ public class RequestRescueService {
         return requestRescueRepo.findAllByLevelOrderByTimeDesc(level);
     }
     public List<RequestRescue> getByLocation(GeoJsonPoint point,double distance){
-        Distance distance1 = new Distance(distance, Metrics.KILOMETERS);
-        return requestRescueRepo.findAllByLocationNearOrderByTimeDesc(point,distance1);
+       return  customMongoQuery.getRequestNear(point, distance);
     }
     public List<RequestRescue> getByPerson(String personId){
         return requestRescueRepo.findByIdPerson(personId);
