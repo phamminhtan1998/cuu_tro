@@ -1,4 +1,4 @@
-package com.phamtan.cuu_tro.async;
+package com.phamtan.cuu_tro.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

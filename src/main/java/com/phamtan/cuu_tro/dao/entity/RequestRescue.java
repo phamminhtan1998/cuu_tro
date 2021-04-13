@@ -18,7 +18,8 @@ public class RequestRescue extends BaseEntity{
     private String id;
     private String description;
     private LocalDate time;
-    private GeoJsonPoint location;
+    private GeoJsonPoint coordinates;
+    private String location;
     private String idPerson;
     private String message;
     private DangerLevel level;

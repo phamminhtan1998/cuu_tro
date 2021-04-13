@@ -1,10 +1,16 @@
 package com.phamtan.cuu_tro.web.api;
 
+import com.phamtan.base.email.data_structure.EmailContentData;
+import com.phamtan.base.email.request.EmailRequest;
+import com.phamtan.base.enumeration.EmailEnum;
 import com.phamtan.cuu_tro.common.enumeration.DisasterType;
 import com.phamtan.cuu_tro.common.enumeration.StatusBasic;
+import com.phamtan.cuu_tro.dao.custom.CustomMongoQuery;
+import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.dao.entity.NaturalDisaster;
 import com.phamtan.cuu_tro.servie.NaturalDisasterService;
 import com.phamtan.cuu_tro.util.GeoJsonConvert;
+import com.phamtan.cuu_tro.util.mail.GmailService;
 import com.phamtan.cuu_tro.web.dto.request.DisasterReqDTO;
 import com.phamtan.cuu_tro.web.dto.request.GeoJsonDTO;
 import lombok.AllArgsConstructor;
@@ -13,7 +19,9 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 @AllArgsConstructor
@@ -21,6 +29,7 @@ import java.util.List;
 public class NaturalDisasterController {
     private final NaturalDisasterService disasterService;
     private final ModelMapper modelMapper;
+
 
     @GetMapping
     public List<NaturalDisaster> findAll(){
@@ -51,6 +60,7 @@ public class NaturalDisasterController {
         modelMapper.map(disasterReqDTO,disaster);
         disaster.setCoordinate(GeoJsonConvert.convertLatLonToGeoPoint(disasterReqDTO.getLon(), disasterReqDTO.getLat()));
         disasterService.create(disaster);
+
         return disaster;
     }
     @PatchMapping

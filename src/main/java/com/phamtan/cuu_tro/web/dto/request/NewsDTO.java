@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class NewsDto implements Serializable {
+public class NewsDTO implements Serializable {
     private String id;
     @NotBlank
     @NotNull

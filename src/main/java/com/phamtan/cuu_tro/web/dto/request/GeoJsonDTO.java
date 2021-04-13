@@ -20,7 +20,7 @@ public class GeoJsonDTO {
     @NotEmpty
     @NotBlank
     private double lon;
-    private Double distance=1.0;
+    private Double distance=10000.0;
 
 
 }

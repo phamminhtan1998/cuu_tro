@@ -3,7 +3,7 @@ package com.phamtan.cuu_tro.web.api;
 import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.servie.AccountService;
 import com.phamtan.cuu_tro.util.GeoJsonConvert;
-import com.phamtan.cuu_tro.web.dto.request.AccountReqDto;
+import com.phamtan.cuu_tro.web.dto.request.AccountReqDTO;
 import com.phamtan.cuu_tro.web.dto.request.GeoJsonDTO;
 import com.phamtan.cuu_tro.web.dto.response.AccountResponse;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class AccountController {
 
 
     @PostMapping
-    public Account create(  @RequestBody AccountReqDto account){
+    public Account create(  @RequestBody AccountReqDTO account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
@@ -77,7 +76,7 @@ public class AccountController {
         return accountService.create(accountDes);
     }
     @PatchMapping
-    public Account update( @RequestBody AccountReqDto account){
+    public Account update( @RequestBody AccountReqDTO account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(
@@ -87,7 +86,7 @@ public class AccountController {
         return accountService.update(accountDes);
     }
     @DeleteMapping
-    public String delete( @RequestBody AccountReqDto account){
+    public String delete( @RequestBody AccountReqDTO account){
         Account accountDes = new Account();
         modelMapper.map(account,accountDes);
         accountDes.setCoordinates(GeoJsonConvert.convertLatLonToGeoPoint(

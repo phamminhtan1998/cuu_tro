@@ -1,13 +1,11 @@
 package com.phamtan.cuu_tro.web.dto.request;
 
-import com.mongodb.lang.Nullable;
-import com.phamtan.cuu_tro.common.enumeration.AccountType;
+import com.phamtan.cuu_tro.common.enumeration.DangerLevel;
+import com.phamtan.cuu_tro.dao.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -17,33 +15,31 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AccountReqDto {
+public class RequestRescueDTO extends BaseEntity {
     private String id;
     @NotNull
     @NotBlank
-    private String fullName;
-    @DateTimeFormat()
-    private LocalDate dob;
-    @NotNull
-    @NotBlank
+    @NotEmpty
     private String location;
+    private String description;
+    private LocalDate time ;
     @NotNull
     @NotBlank
-    @NumberFormat
-    private Double lat;
-    @NotNull
-    @NotBlank
-    @NumberFormat
-    private Double lon;
-    @NotBlank
-    @NotNull
     @NotEmpty
-    private String accountIdf;
-    private String password;
-    private AccountType accountType;
+    @NumberFormat
+    private double lat;
     @NotNull
-    @NotEmpty
     @NotBlank
-    private String phoneNumber;
-    private String playerId;
+    @NotEmpty
+    @NumberFormat
+    private double lon;
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String idPerson;
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String message;
+    private DangerLevel level=DangerLevel.HIGH;
 }

@@ -3,7 +3,7 @@ package com.phamtan.cuu_tro.web.api;
 import com.phamtan.cuu_tro.common.enumeration.StatusBasic;
 import com.phamtan.cuu_tro.dao.entity.News;
 import com.phamtan.cuu_tro.servie.NewsService;
-import com.phamtan.cuu_tro.web.dto.request.NewsDto;
+import com.phamtan.cuu_tro.web.dto.request.NewsDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -46,7 +46,7 @@ public class NewController {
 
 
     @PostMapping
-    public ResponseEntity<NewsDto> create(@Valid @RequestBody NewsDto newsDto) {
+    public ResponseEntity<NewsDTO> create(@Valid @RequestBody NewsDTO newsDto) {
         News news = new News();
         modelMapper.map(newsDto, news);
         try {
@@ -59,7 +59,7 @@ public class NewController {
     }
 
     @PatchMapping
-    public ResponseEntity<NewsDto> update( @RequestBody NewsDto newsDto) {
+    public ResponseEntity<NewsDTO> update(@RequestBody NewsDTO newsDto) {
         News news = new News();
         modelMapper.map(newsDto, news);
         try {
@@ -73,7 +73,7 @@ public class NewController {
 
     }
     @DeleteMapping
-    public ResponseEntity<StatusBasic> delete( @RequestBody NewsDto newsDto) {
+    public ResponseEntity<StatusBasic> delete( @RequestBody NewsDTO newsDto) {
         News news = new News();
         modelMapper.map(newsDto, news);
         try {
