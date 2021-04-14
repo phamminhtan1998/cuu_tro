@@ -3,4 +3,4 @@ WORKDIR /application
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} application.jar
 COPY . .
-CMD java -jar application.jar
+ENTRYPOINT ["java", "-jar", "application.jar"]
