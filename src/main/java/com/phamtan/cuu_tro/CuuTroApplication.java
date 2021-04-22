@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
-@ComponentScan(basePackages ={"com.phamtan.cuu_tro","com.example.grpc_base","com.phamtan.base"} )
+@ComponentScan(basePackages ={"com.phamtan.cuu_tro","com.example.grpc_base","com.phamtan.base","io.github.logger"} )
 @EnableMongoAuditing
 public class CuuTroApplication  {
 

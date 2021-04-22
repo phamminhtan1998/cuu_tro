@@ -15,7 +15,7 @@ public class AsyncConfig {
         executor.setMaxPoolSize(30);
         executor.setQueueCapacity(500);
         executor.setKeepAliveSeconds(3);
-        executor.setThreadNamePrefix("WebHookAsyncThread--");
+        executor.setThreadNamePrefix("AsyncThread--");
         executor.initialize();
         return executor;
     }

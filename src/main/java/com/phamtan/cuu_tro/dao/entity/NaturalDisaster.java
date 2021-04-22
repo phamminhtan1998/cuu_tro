@@ -18,7 +18,4 @@ public class NaturalDisaster extends BaseEntity {
     private String area;
     private GeoJsonPoint coordinate;
     private DisasterType disasterType;
-
-
-
 }
