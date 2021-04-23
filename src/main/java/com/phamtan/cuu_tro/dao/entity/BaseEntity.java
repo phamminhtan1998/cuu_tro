@@ -6,14 +6,15 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public abstract  class BaseEntity {
     @CreatedDate
-    private LocalDate createDate;
+    private LocalDateTime createDate;
     @CreatedBy
     private String createBy;
     @LastModifiedDate
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
     @LastModifiedBy
     private String updateBy;
 }

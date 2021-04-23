@@ -6,7 +6,7 @@ import com.phamtan.cuu_tro.dao.repo.NewsRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +21,13 @@ public class NewsService {
     public List<News> getAllByAuthor(String author){
         return newsRepo.findAllByAuthor(author);
     }
-    public List<News> getAllByGteDate(LocalDate startDate){
+    public List<News> getAllByGteDate(LocalDateTime startDate){
         return newsRepo.findAllByCreateDateAfter(startDate);
     }
-    public List<News> getAllByLteDate(LocalDate endDate){
+    public List<News> getAllByLteDate(LocalDateTime endDate){
         return newsRepo.findAllByCreateDateBefore(endDate);
     }
-    public List<News> getAllByWithin(LocalDate startDate,LocalDate endDate){
+    public List<News> getAllByWithin(LocalDateTime startDate,LocalDateTime endDate){
         return newsRepo.findAllByCreateDateBetween(startDate, endDate);
     }
 

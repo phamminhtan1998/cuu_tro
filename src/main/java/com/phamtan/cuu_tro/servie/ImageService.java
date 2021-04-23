@@ -11,12 +11,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class ImageService {
     private final ImageRepo imageRepo;
     private final DropBoxService dropBoxService;
+    public List<Image> findAll(){
+       return  imageRepo.findAll();
+    }
     public Image getImage(String id){
         return imageRepo.findById(id).get();
     }

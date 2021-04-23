@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -32,15 +32,15 @@ public class NewController {
         return new ResponseEntity<>( newsService.getAllByAuthor(name),HttpStatus.OK);
     }
     @GetMapping("/date_gte")
-    public ResponseEntity<List<News>>findAllByDateGte(@RequestParam("date") LocalDate date){
+    public ResponseEntity<List<News>>findAllByDateGte(@RequestParam("date") LocalDateTime date){
         return new ResponseEntity<>( newsService.getAllByGteDate(date),HttpStatus.OK);
     }
     @GetMapping("/date_lte")
-    public ResponseEntity<List<News>>findAllByDateLte(@RequestParam("date") LocalDate date){
+    public ResponseEntity<List<News>>findAllByDateLte(@RequestParam("date") LocalDateTime date){
         return new ResponseEntity<>( newsService.getAllByLteDate(date),HttpStatus.OK);
     }
     @GetMapping("/date")
-    public ResponseEntity<List<News>>findAllByDateWithin(@RequestParam("startDate") LocalDate startDate,@RequestParam("endDate") LocalDate endDate){
+    public ResponseEntity<List<News>>findAllByDateWithin(@RequestParam("startDate") LocalDateTime startDate,@RequestParam("endDate") LocalDateTime endDate){
         return new ResponseEntity<>( newsService.getAllByWithin(startDate,endDate),HttpStatus.OK);
     }
 

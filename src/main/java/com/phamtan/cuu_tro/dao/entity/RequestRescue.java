@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class RequestRescue extends BaseEntity{
     @Id
     private String id;
     private String description;
-    private LocalDate time;
+    private LocalDateTime time;
     private GeoJsonPoint coordinates;
     private String location;
     private String idPerson;

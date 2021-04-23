@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class Account extends  BaseEntity implements Serializable {
     @Id
     private String id;
     private String fullName;
-    private LocalDate dob;
+    private LocalDateTime dob;
     private String location;
 
     private GeoJsonPoint coordinates;

@@ -7,12 +7,21 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/images")
 public class ImageController {
     private final ImageService imageService;
-
+    @GetMapping
+    public List<Image> getAll(){
+        return imageService.findAll();
+    }
+    @GetMapping("/{id}")
+    public Image getAll(@PathVariable("id")String id){
+        return imageService.getImage(id);
+    }
 
     @PostMapping()
     public Image uploadImage(@RequestParam(value = "file") MultipartFile file
@@ -31,7 +40,13 @@ public class ImageController {
         image.setSpecifyType(specifyType);
         image.setIdParent(idParent);
        return  imageService.createImage(image,file);
-
-
+    }
+    @PutMapping
+    public Image udpate(@RequestBody Image image){
+        return imageService.update(image);
+    }
+    @DeleteMapping
+    public void deleteImage(@RequestBody Image image){
+        imageService.delete(image);
     }
 }

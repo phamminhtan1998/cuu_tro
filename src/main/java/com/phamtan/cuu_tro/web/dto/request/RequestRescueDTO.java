@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -22,7 +24,7 @@ public class RequestRescueDTO extends BaseEntity {
     @NotEmpty
     private String location;
     private String description;
-    private LocalDate time ;
+    private LocalDateTime time ;
     @NotNull
     @NotBlank
     @NotEmpty

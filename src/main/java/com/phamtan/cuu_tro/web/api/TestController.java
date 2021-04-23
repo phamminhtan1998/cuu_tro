@@ -13,24 +13,28 @@ import com.dropbox.core.v2.users.FullAccount;
 import com.phamtan.cuu_tro.common.enumeration.DropBoxCommon;
 import com.phamtan.cuu_tro.common.enumeration.ImageType;
 import com.phamtan.cuu_tro.dao.entity.Image;
+import com.phamtan.cuu_tro.dao.entity.Notify;
+import com.phamtan.cuu_tro.dao.repo.NotifyRepo;
 import com.phamtan.cuu_tro.servie.DropBoxService;
 import com.phamtan.cuu_tro.util.mail.GmailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
-@RequestMapping("test")
+@RequestMapping("/test")
 @RequiredArgsConstructor
 
 public class TestController {
     private final GmailService gmailService;
     private final DropBoxService dropBoxService;
+    private final NotifyRepo notifyRepo;
+
 
     @GetMapping("/{name}")
     public String test(@PathVariable("name")String name){
@@ -48,6 +52,15 @@ public class TestController {
 //        FileMetadata test = dropBoxService.uploadFile(file,image);
 //        return "dropbox";
 //    }
-
+    @PostMapping
+    public Notify testNotify(@RequestBody Notify notify){
+//        Map<String,String> data = new HashMap<>();
+//        data.put("test","mock value");
+       return notifyRepo.save(notify);
+    }
+    @GetMapping
+    public List<Notify> getNoti(){
+        return notifyRepo.findAll();
+    }
 
 }
