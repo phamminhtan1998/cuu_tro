@@ -1,7 +1,6 @@
 package com.phamtan.cuu_tro.dao.custom;
 
 import com.phamtan.cuu_tro.common.enumeration.DisasterType;
-import com.phamtan.cuu_tro.dao.entity.Account;
 import com.phamtan.cuu_tro.dao.entity.NaturalDisaster;
 import com.phamtan.cuu_tro.dao.entity.RequestRescue;
 import lombok.AllArgsConstructor;
@@ -12,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import com.phamtan.cuu_tro.dao.entity.Account;
 
 import java.util.List;
 

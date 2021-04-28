@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -31,5 +32,6 @@ public class Account extends  BaseEntity implements Serializable {
     private AccountType accountType;
     private String phoneNumber;
     private String playerId;
+
 
 }
