@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,11 @@ public class TestController {
 
     @GetMapping("/upload-file")
     public String uploadFile(@RequestParam("url_file")String urlFile) throws IOException, InterruptedException {
-        grpcClient.uploadFile(urlFile);
+
+        List<String> paths = new ArrayList<>();
+        paths.add("/home/allinone/Desktop/oca_8_guide.pdf");
+        paths.add(urlFile);
+        grpcClient.uploadMultiFile(paths);
         return "upload file ";
     }
 
