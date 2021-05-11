@@ -12,10 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.Duration;
 
 @GrpcService
 public class GrpcUploadFileImpl  extends FileServiceGrpc.FileServiceImplBase {
-    private static  final Path SERVER_BASE_PATH = Paths.get("src/resource/output");
+    private static  final Path SERVER_BASE_PATH = Paths.get("/media/allinone/Learn");
     @Override
     public StreamObserver<FileOuterClass.FileUploadRequest> upload(StreamObserver<FileOuterClass.FileUploadResponse> responseObserver) {
        return new StreamObserver<FileOuterClass.FileUploadRequest>() {
@@ -25,6 +26,7 @@ public class GrpcUploadFileImpl  extends FileServiceGrpc.FileServiceImplBase {
            @Override
            public void onNext(FileOuterClass.FileUploadRequest  fileUploadRequest) {
                 try {
+                    System.out.println("File upload request !");
                     if(fileUploadRequest.hasMetadata()){
                         writer = getFilePath(fileUploadRequest);
                     }else{
@@ -49,14 +51,15 @@ public class GrpcUploadFileImpl  extends FileServiceGrpc.FileServiceImplBase {
                        .setStatus(status)
                        .build();
                responseObserver.onNext(response);
-               responseObserver.onCompleted();
 
+               responseObserver.onCompleted();
            }
        };
     }
     private OutputStream getFilePath(FileOuterClass.FileUploadRequest request) throws IOException {
         var fileName = request.getMetadata().getName() + "." + request.getMetadata().getType();
-        return Files.newOutputStream(SERVER_BASE_PATH.resolve(fileName), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+       OutputStream outputStream =  Files.newOutputStream(SERVER_BASE_PATH.resolve(fileName), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        return  outputStream;
     }
 
     private void writeFile(OutputStream writer, ByteString content) throws IOException {

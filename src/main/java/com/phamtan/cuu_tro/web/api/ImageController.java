@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -31,7 +34,7 @@ public class ImageController {
             , @RequestParam("idParent") String  idParent
             , @RequestParam("type") ImageType type
             , @RequestParam(value = "specifyType",required = false) String  specifyType
-        ){
+        ) throws IOException {
         Image image = new Image();
         image.setName(name);
         image.setDescription(description);
@@ -39,7 +42,10 @@ public class ImageController {
         image.setType(type);
         image.setSpecifyType(specifyType);
         image.setIdParent(idParent);
-       return  imageService.createImage(image,file);
+        File destinationFile = new File("/media/allinone/Learn/"+file.getOriginalFilename());
+        file.transferTo(destinationFile);
+        return  image;
+//       return  imageService.createImage(image,file);
     }
     @PutMapping
     public Image udpate(@RequestBody Image image){

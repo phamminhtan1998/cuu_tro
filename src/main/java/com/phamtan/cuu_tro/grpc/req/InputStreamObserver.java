@@ -55,15 +55,16 @@ public class InputStreamObserver implements StreamObserver<Way.WayRequest> {
         newWay.setWayType(scopedBean.getNewWayType().equals("ROAD")? NewWayType.ROAD:NewWayType.WATERWAY);
         newWay.setName(scopedBean.getName());
         newWay.setWayCoordinate(list);
-        newWayService.create(newWay);
+//        newWayService.create(newWay);
 
         Way.WayResponse  wayResponse = Way.WayResponse.newBuilder()
-                .setId(newWay.getId())
+                .setId(scopedBean.getId())
                 .setDescription(newWay.getDescription())
                 .setName(newWay.getName())
                 .setMessage(MessageRepose.SUCCESSFUL.getMessage())
                 .setLocation(newWay.getLocation())
                 .build();
+        System.out.println(wayResponse.toString());
         outputStreamObserver.onNext(wayResponse);
         outputStreamObserver.onCompleted();
     }

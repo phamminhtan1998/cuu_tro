@@ -16,11 +16,13 @@ import com.phamtan.cuu_tro.dao.entity.Image;
 import com.phamtan.cuu_tro.dao.entity.Notify;
 import com.phamtan.cuu_tro.dao.repo.NotifyRepo;
 import com.phamtan.cuu_tro.servie.DropBoxService;
+import com.phamtan.cuu_tro.test.GrpcClient;
 import com.phamtan.cuu_tro.util.mail.GmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,7 @@ public class TestController {
     private final GmailService gmailService;
     private final DropBoxService dropBoxService;
     private final NotifyRepo notifyRepo;
+    private final GrpcClient grpcClient;
 
 
     @GetMapping("/{name}")
@@ -41,17 +44,7 @@ public class TestController {
 //        gmailService.sendEmail();
         return name;
     }
-//    @GetMapping("/dropbox")
-//    public String dropBox() throws DbxException, FileNotFoundException {
-//        File file = new File("/home/allinone/Pictures/pexels-lisa-1083822.jpg");
-//        Image image = new Image();
-//        image.setName("testImage");
-//        image.setType(ImageType.AVATAR);
-//        image.setIdParent("id cua ong so huu");
-//        image.setDescription("image cho test");
-//        FileMetadata test = dropBoxService.uploadFile(file,image);
-//        return "dropbox";
-//    }
+
     @PostMapping
     public Notify testNotify(@RequestBody Notify notify){
 //        Map<String,String> data = new HashMap<>();
@@ -61,6 +54,12 @@ public class TestController {
     @GetMapping
     public List<Notify> getNoti(){
         return notifyRepo.findAll();
+    }
+
+    @GetMapping("/upload-file")
+    public String uploadFile(@RequestParam("url_file")String urlFile) throws IOException, InterruptedException {
+        grpcClient.uploadFile(urlFile);
+        return "upload file ";
     }
 
 }
